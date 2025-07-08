@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenan Ali-zada - CV</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(270deg, #00ffea, #ff00cc, #8a2be2);
+            background-size: 600% 600%;
+            animation: neonGradient 20s ease infinite;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        @keyframes neonGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .welcome-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.8s ease-out;
+        }
+
+        .welcome-text {
+            font-family: 'Fira Code', monospace;
+            font-size: 2.5em;
+            color: #ffffff;
+            text-shadow: 0 0 20px #ffffff, 0 0 40px #00ff7b;
+            text-align: center;
+            margin-bottom: 30px;
+            animation: typing 3s steps(40) forwards, blink-caret 0.75s step-end infinite;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid #ffffff;
+            width: 0;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            50% { border-color: transparent; }
+        }
+
+        .explore-btn {
+            padding: 15px 40px;
+            font-family: 'Fira Code', monospace;
+            font-size: 1.2em;
+            color: #ffffff;
+            background: linear-gradient(45deg, #00ff7b, #ff00cc);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .explore-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            background: rgba(0, 0, 0, 0.85);
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(100px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        header {
+            background: #1a1a2e;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        header h1 {
+            font-family: 'Fira Code', monospace;
+            font-size: 3em;
+            color: #ffffff;
+            text-shadow: 0 0 15px #ffffff;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #ffffff; }
+            to { text-shadow: 0 0 20px #ff00cc; }
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 1em;
+            margin-top: 20px;
+        }
+
+        .contact-info span {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 25px;
+            color: #ffffff;
+            animation: pulse 2s infinite;
+            transition: transform 0.3s;
+        }
+
+        .contact-info span:hover {
+            transform: translateY(-5px);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 5px #ffffff; }
+            50% { box-shadow: 0 0 15px #ff00cc; }
+            100% { box-shadow: 0 0 5px #ffffff; }
+        }
+
+        .contact-info a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-info a:hover {
+            color: #ff00cc;
+        }
+
+        section {
+            padding: 50px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        section h2 {
+            font-family: 'Fira Code', monospace;
+            font-size: 2.2em;
+            color: #ffffff;
+            margin-bottom: 25px;
+            text-shadow: 0 0 10px #ffffff;
+        }
+
+        section h2::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: #ff00cc;
+            display: block;
+            margin-top: 10px;
+            transition: width 0.3s;
+        }
+
+        section h2:hover::after {
+            width: 150px;
+        }
+
+        .summary p, .skills ul, .projects ul, .education p, .additional p {
+            font-size: 1.1em;
+            color: #e0e0e0;
+        }
+
+        .skills ul {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            list-style: none;
+        }
+
+        .skills ul li {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            color: #ffffff;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            transform-style: preserve-3d;
+        }
+
+        .skills ul li:hover {
+            transform: rotateX(10deg) rotateY(10deg);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .projects ul {
+            list-style: none;
+        }
+
+        .projects ul li {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .projects ul li:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255, 0, 204, 0.5);
+        }
+
+        .projects ul li strong {
+            color: #ffffff;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .github-link {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 30px;
+            background: #ff00cc;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 30px;
+            font-family: 'Fira Code', monospace;
+            font-weight: 600;
+            box-shadow: 0 0 15px rgba(255, 0, 204, 0.5);
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .github-link:hover {
+            background: #ffffff;
+            color: #ff00cc;
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 600px) {
+            .welcome-text {
+                font-size: 1.8em;
+            }
+
+            header h1 {
+                font-size: 2.2em;
+            }
+
+            section {
+                padding: 30px;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .skills ul {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles"></div>
+    <div class="welcome-screen" id="welcomeScreen">
+        <h1 class="welcome-text">Welcome to Kenan Ali-zada's CV Portfolio</h1>
+        <button class="explore-btn" id="exploreBtn">Explore CV</button>
+    </div>
+    <div class="container" id="cvContainer">
+        <header>
+            <h1>Kenan Ali-zada</h1>
+            <div class="contact-info">
+                <span>📍 Baku, Azerbaijan</span>
+                <span>📧 <a href="mailto:kenan260409@gmail.com">kenan260409@gmail.com</a></span>
+                <span>📞 +994 010-320-13-23</span>
+                <span>💻 <a href="https://github.com/Kennyy997" target="_blank">GitHub</a></span>
+                <span>🔗 <a href="https://www.linkedin.com/in/kanan-ali-zada-19ab74372?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank">LinkedIn</a></span>
+                <span>🗣️ Languages: Azerbaijani, Turkish, English, Russian</span>
+            </div>
+        </header>
+
+        <section class="summary">
+            <h2>Professional Summary</h2>
+            <p>Enthusiastic and fast-learning Junior .NET Developer with a solid understanding of backend and frontend web technologies. Recently completed hands-on training in C#, ASP.NET MVC, SQL Server, and RESTful APIs. Built multiple personal projects demonstrating CRUD functionality, user authentication, and database integration. Eager to apply skills in a real-world development environment and grow as part of a collaborative tech team.</p>
+        </section>
+
+        <section class="skills">
+            <h2>Technical Skills</h2>
+            <ul>
+                <li>Languages: C#, SQL, JavaScript, HTML5, CSS3</li>
+                <li>Frameworks: ASP.NET MVC, .NET Core, jQuery, Bootstrap</li>
+                <li>Database: SQL Server, Entity Framework</li>
+                <li>Tools: Visual Studio, Git, GitHub, Postman</li>
+                <li>Other: REST APIs, MVC Architecture, Agile Basics</li>
+            </ul>
+        </section>
+
+        <section class="projects">
+            <h2>Project Experience</h2>
+            <ul>
+                <li>
+                    <strong>Student Management System</strong><br>
+                    Developed a web app to manage student records with full CRUD functionality. Used Entity Framework for data access and Razor pages for UI rendering. Implemented form validations and pagination.
+                </li>
+                <li>
+                    <strong>Mini E-Commerce API</strong><br>
+                    Built RESTful APIs for managing products, cart, and user registration. Tested endpoints using Postman and connected to a local SQL database. Applied repository pattern and clean code principles.
+                </li>
+                <li>
+                    <strong>Personal Portfolio Website</strong><br>
+                    Created a responsive portfolio site showcasing projects and GitHub repos. Used CSS animations and JavaScript interactivity for a modern look.
+                </li>
+                <li>
+                    <strong>Restaurant Mini-MVC Project</strong><br>
+                    Developed restaurant menu and table reservation system with an admin panel. Integrated mailing functionality using SMTP. Technologies: ASP.NET MVC, C#, Entity Framework, SQL Server, Razor Views, Bootstrap, ASP.NET Identity, jQuery Validation.
+                </li>
+            </ul>
+            <a href="https://github.com/Kennyy997" target="_blank" class="github-link">Explore More on GitHub</a>
+        </section>
+
+        <section class="education">
+            <h2>Education</h2>
+            <p><strong>.NET Full Stack Development Bootcamp</strong><br>Code Academy | 2023-2025<br>Completed projects in ASP.NET MVC, REST API, and full-stack web development. Practiced source control with Git/GitHub and Agile-style sprints.</p>
+            <p><strong>95 High School</strong><br>2015-2020</p>
+        </section>
+
+        <section class="additional">
+            <h2>Additional Information</h2>
+            <p>- Available for internship or junior-level .NET roles.<br>- Open to hybrid or remote work.<br>- Passionate about clean code, problem-solving, and learning new technologies.</p>
+        </section>
+    </div>
+
+    <script>
+        // Particle Background
+        const canvas = document.createElement('canvas');
+        document.getElementById('particles').appendChild(canvas);
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const ctx = canvas.getContext('2d');
+        const particlesArray = [];
+        const particleCount = 100;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.speedY = Math.random() * 1 - 0.5;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.size > 0.2) this.size -= 0.01;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            for (let i = 0; i < particleCount; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particlesArray.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+
+        initParticles();
+        animateParticles();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Handle welcome screen
+        const welcomeScreen = document.getElementById('welcomeScreen');
+        const exploreBtn = document.getElementById('exploreBtn');
+        const cvContainer = document.getElementById('cvContainer');
+
+        exploreBtn.addEventListener('click', () => {
+            welcomeScreen.classList.add('hidden');
+            cvContainer.classList.add('visible');
+            setTimeout(animateSections, 800);
+        });
+
+        // Animate sections sequentially
+        function animateSections() {
+            const sections = document.querySelectorAll('section');
+            sections.forEach((section, index) => {
+                setTimeout(() => {
+                    section.classList.add('visible');
+                }, index * 200);
+            });
+        }
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.querySelector(anchor.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
