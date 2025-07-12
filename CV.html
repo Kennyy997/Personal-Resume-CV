@@ -39,68 +39,6 @@
             opacity: 0.3;
         }
 
-        .welcome-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            animation: fadeIn 1s ease-in;
-        }
-
-        .welcome-screen.hidden {
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.8s ease-out;
-        }
-
-        .welcome-text {
-            font-family: 'Fira Code', monospace;
-            font-size: 2.5em;
-            color: #ffffff;
-            text-shadow: 0 0 20px #ffffff, 0 0 40px #00ff7b;
-            text-align: center;
-            margin-bottom: 30px;
-            animation: typing 3s steps(40) forwards, blink-caret 0.75s step-end infinite;
-            white-space: nowrap;
-            overflow: hidden;
-            border-right: 3px solid #ffffff;
-            width: 0;
-        }
-
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-
-        @keyframes blink-caret {
-            50% { border-color: transparent; }
-        }
-
-        .explore-btn {
-            padding: 15px 40px;
-            font-family: 'Fira Code', monospace;
-            font-size: 1.2em;
-            color: #ffffff;
-            background: linear-gradient(45deg, #00ff7b, #ff00cc);
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .explore-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
-        }
-
         .container {
             max-width: 900px;
             margin: 50px auto;
@@ -312,11 +250,7 @@
 </head>
 <body>
     <div id="particles"></div>
-    <div class="welcome-screen" id="welcomeScreen">
-        <h1 class="welcome-text">Welcome to Kenan Ali-zada's CV Portfolio</h1>
-        <button class="explore-btn" id="exploreBtn">Explore CV</button>
-    </div>
-    <div class="container" id="cvContainer">
+    <div class="container visible" id="cvContainer">
         <header>
             <h1>Kenan Ali-zada</h1>
             <div class="contact-info">
@@ -436,16 +370,10 @@
             canvas.height = window.innerHeight;
         });
 
-        // Handle welcome screen
-        const welcomeScreen = document.getElementById('welcomeScreen');
-        const exploreBtn = document.getElementById('exploreBtn');
-        const cvContainer = document.getElementById('cvContainer');
-
-        exploreBtn.addEventListener('click', () => {
-            welcomeScreen.classList.add('hidden');
-            cvContainer.classList.add('visible');
-            setTimeout(animateSections, 800);
-        });
+        // Removed welcome screen JS
+        // Directly show CV container and animate sections
+        document.getElementById('cvContainer').classList.add('visible');
+        setTimeout(animateSections, 800);
 
         // Animate sections sequentially
         function animateSections() {
