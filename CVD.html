@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenan Ali-zada CV</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f4f6fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .header {
+            margin-top: 40px;
+            text-align: center;
+        }
+        .contact {
+            margin-bottom: 30px;
+            color: #444;
+        }
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .info-btn {
+            position: relative;
+            background: #2d72d9;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 18px 32px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .info-btn:hover {
+            background: #174ea6;
+            transform: translateY(-2px) scale(1.04);
+        }
+        .tooltip {
+            display: none;
+            position: absolute;
+            top: 110%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fff;
+            color: #222;
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.13);
+            padding: 18px 22px;
+            min-width: 260px;
+            z-index: 10;
+            font-size: 1rem;
+            text-align: left;
+        }
+        .info-btn:hover .tooltip {
+            display: block;
+        }
+        @media (max-width: 600px) {
+            .button-container {
+                flex-direction: column;
+                gap: 16px;
+            }
+            .info-btn {
+                width: 90vw;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Kenan Ali-zada</h1>
+        <div class="contact">
+            📍 Baku, Azerbaijan | 📧 kenan260409@gmail.com | 📞 +994 010-320-13-23<br>
+            💻 <a href="https://github.com/Kennyy997" target="_blank" style="color:#2d72d9;">GitHub</a> |
+            <a href="https://linkedin.com/in/kenanAli-zada" target="_blank" style="color:#2d72d9;">LinkedIn</a><br>
+            <b>Languages:</b> Azerbaijan, Turkey, English, Russian
+        </div>
+    </div>
+    <div class="button-container">
+        <button class="info-btn">Professional Summary
+            <div class="tooltip">
+                Enthusiastic and fast-learning Junior .NET Developer with solid understanding of backend and frontend web technologies. Recently completed hands-on training in C#, ASP.NET MVC, SQL Server, and RESTful APIs. Built multiple personal projects demonstrating CRUD functionality, user authentication, and database integration. Eager to apply skills in a real-world development environment and grow as part of a collaborative tech team.
+            </div>
+        </button>
+        <button class="info-btn">Technical Skills
+            <div class="tooltip">
+                <b>Languages:</b> C#, SQL, JavaScript, HTML5, CSS3<br>
+                <b>Frameworks & Libraries:</b> ASP.NET MVC, .NET Core, jQuery, Bootstrap<br>
+                <b>Database:</b> SQL Server, Entity Framework<br>
+                <b>Tools:</b> Visual Studio, Git, GitHub, Postman<br>
+                <b>Other:</b> REST APIs, MVC Architecture, Agile Basics, Onion Architecture
+            </div>
+        </button>
+        <button class="info-btn">Project Experience
+            <div class="tooltip">
+                <b>Student Management System:</b> Web app for managing student records (CRUD, validation, pagination, Entity Framework, Razor pages).<br><br>
+                <b>Mini E-Commerce API:</b> RESTful APIs for products, cart, user registration (Postman, SQL, repository pattern, clean code).<br><br>
+                <b>Personal Portfolio Website:</b> Responsive site with CSS animations and JavaScript interactivity.<br><br>
+                <b>Restaurant Mini-MVC Project:</b> Menu, table reservation, admin panel, mailing (ASP.NET MVC, C#, Entity Framework, SQL Server, Razor Views, Bootstrap, ASP.NET Identity, SMTP Email, jQuery Validation).
+            </div>
+        </button>
+        <button class="info-btn">Education & Training
+            <div class="tooltip">
+                <b>.NET Full Stack Development Bootcamp</b><br>
+                Code Academy | 2025-2026<br><br>
+                <b>95 High School</b> | 2015-2026<br><br>
+                - Completed projects in ASP.NET MVC, REST API, and full-stack web development<br>
+                - Practiced source control with Git/GitHub and Agile-style sprints
+            </div>
+        </button>
+        <button class="info-btn">Additional Information
+            <div class="tooltip">
+                - Available for internship or junior-level .NET roles<br>
+                - Open to hybrid or remote work<br>
+                - Passionate about clean code, problem-solving, and learning new technologies
+            </div>
+        </button>
+    </div>
+    <script>
+        // Optional: If you want tooltips to stay visible when hovered, you can add JS for mobile support
+        document.querySelectorAll('.info-btn').forEach(btn => {
+            btn.addEventListener('touchstart', function(e) {
+                e.stopPropagation();
+                document.querySelectorAll('.tooltip').forEach(tip => tip.style.display = 'none');
+                this.querySelector('.tooltip').style.display = 'block';
+            });
+        });
+        document.body.addEventListener('touchstart', function() {
+            document.querySelectorAll('.tooltip').forEach(tip => tip.style.display = 'none');
+        });
+    </script>
+</body>
+</html>
